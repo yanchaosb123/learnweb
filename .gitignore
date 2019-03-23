@@ -1,0 +1,10 @@
+.classpath
+.idea/
+.project
+.settings/
+.vscode/
+davidstark.iml
+learnweb.iml
+log.out
+out/
+target/
