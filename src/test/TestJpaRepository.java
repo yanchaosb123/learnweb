@@ -15,9 +15,9 @@ public class TestJpaRepository {
 
     ApplicationContext ctx ;
 
-
-    @Autowired
-    AreaRepository areaRepository;
+    //
+    // @Autowired
+    // AreaRepository areaRepository;
 
 
     @Before
@@ -30,7 +30,7 @@ public class TestJpaRepository {
 
     @Test
     public void testJpaRepository(){
-        Area area = areaRepository.findById(1L).orElse(null);
-        System.out.println(area.getArea());
+        // Area area = areaRepository.findById(1L).orElse(null);
+        // System.out.println(area.getArea());
     }
 }
