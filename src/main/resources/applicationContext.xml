@@ -19,44 +19,30 @@
     <context:annotation-config/>
 
     <!-- 开启包扫描 -->
-    <context:component-scan base-package="com.david"/>
+    <context:component-scan base-package="com.david"></context:component-scan>
 
 
-    <bean id="dataSource" class="com.mysql.jdbc.Driver">
-
-    </bean>
-
-    <bean id="portalDataSource" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="url" value="jdbc:mysql://localhost:3306/portal?autoReconnect=true&amp;useSSL=true" />
-
-        <property name="username" value="root" />
-        <property name="password" value="1234" />
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <!-- <property name="InitialSize" value="" />
-        <property name="MinIdle" value="" />
-        <property name="MaxActive" value="" />
-        <property name="MaxWait" value="" />
-        <property name="TimeBetweenEvictionRunsMillis" value="" />
-        <property name="MinEvictableIdleTimeMillis" value="" />
-        <property name="ValidationQuery" value="" />
-        <property name="TestWhileIdle" value="" />
-        <property name="TestOnBorrow" value="" />
-        <property name="TestOnReturn" value="" />
-        <property name="PoolPreparedStatements" value="" />
-        <property name="MaxPoolPreparedStatementPerConnectionSize" value="" /> -->
-       
-    </bean>
+    <import resource="classpath*:databaseContext.xml"/>
 
 
-    <jpa:repositories base-package="com.david" repository-impl-postfix="Impl"
-                      entity-manager-factory-ref="entityManagerFactory"
-                      transaction-manager-ref="transactionManager" />
+
+
+
+    <!--repository-impl-postfix="Impl" -->
+    <!--<jpa:repositories base-package="com.david"></jpa:repositories>-->
+                      <!--entity-manager-factory-ref="entityManagerFactory"-->
+                      <!--transaction-manager-ref="transactionManager" />-->
 
 
 
     <bean id="me" class="com.david.beans.User" >
         <property name="name" value="zhaoyanchao"/>
         <property name="password" value="abcdefg" />
+    </bean>
+
+
+    <bean id ="helloService" class="com.david.service.HelloService">
+
     </bean>
 
 

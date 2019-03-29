@@ -1,12 +1,15 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.david.beans.Area;
-import com.david.com.david.dao.AreaRepository;
+import com.david.service.HelloService;
+
+import java.util.List;
 
 /**
  * Created by z00473307 on 2019/3/23.
@@ -16,8 +19,7 @@ public class TestJpaRepository {
     ApplicationContext ctx ;
 
     //
-    // @Autowired
-    // AreaRepository areaRepository;
+
 
 
     @Before
@@ -30,7 +32,34 @@ public class TestJpaRepository {
 
     @Test
     public void testJpaRepository(){
-        // Area area = areaRepository.findById(1L).orElse(null);
-        // System.out.println(area.getArea());
+
+        EntityManagerFactory emf = (EntityManagerFactory)ctx.getBean("entityManagerFactory"); // Persistence.createEntityManagerFactory("jpa");
+        EntityManager em = emf.createEntityManager();
+        //em.setProperty();
+        assert (em != null);
+      //  javax.persistence.
+        Query query = em.createQuery("select a from Area a");
+        List resultList = query.getResultList();
+
+        assert( resultList != null);
+
+        for(int i =0 ; i< resultList.size(); i++) {
+            System.out.println(resultList.get(i));
+        }
+    }
+
+
+    @Test
+    public void testQueryWithPersistenceContextAnno() {
+
+        HelloService helloService =(HelloService) ctx.getBean("helloService");
+        List resultList = helloService.getAreas();
+
+        assert( resultList != null);
+
+        for(int i =0 ; i< resultList.size(); i++) {
+            System.out.println(resultList.get(i));
+        }
+
     }
 }
